@@ -1,0 +1,57 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	padding: 0.5rem;
+	padding-top: 0;
+}
+
+body[data-type="mainEditor"] {
+	padding: 0;
+}
+
+#disabled-dialog {
+	padding: 0;
+	background: transparent;
+	border: none;
+}
+
+#disabled-dialog::backdrop {
+	background: var(--vscode-widget-shadow);
+}
+
+#activate {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	box-shadow: 0px 0px 7px 0px var(--vscode-widget-shadow);
+	padding: 0.5rem 1rem;
+	margin: 1em;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+#activate:focus,
+#activate:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+#notepad {
+	color-scheme: light dark;
+	width: 100%;
+	height: 100%;
+	resize: none;
+	padding: 0.5rem;
+	background: var(--vscode-editor-background);
+	color: var(--vscode-editor-foreground);
+}
+
+#notepad:focus {
+	outline: none;
+}

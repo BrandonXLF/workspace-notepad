@@ -1,0 +1,140 @@
+{
+	"name": "workspace-notepad",
+	"displayName": "Workspace Notepad",
+	"description": "Minimal and convenient notepad text box unique to each workspace/opened folder.",
+	"publisher": "brandonfowler",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BrandonXLF/workspace-notepad"
+	},
+	"homepage": "https://github.com/BrandonXLF/workspace-notepad",
+	"bugs": {
+		"url": "https://github.com/BrandonXLF/workspace-notepad/issues"
+	},
+	"icon": "media/logo.png",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"notepad",
+		"notes",
+		"workspace",
+		"folder"
+	],
+	"activationEvents": [
+		"onWebviewPanel:workspace-notepad-main-editor"
+	],
+	"main": "./out/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint src"
+	},
+	"devDependencies": {
+		"@types/node": "20.x",
+		"@types/vscode": "^1.74.0",
+		"@types/vscode-webview": "^1.57.5",
+		"@typescript-eslint/eslint-plugin": "^8.25.0",
+		"@typescript-eslint/parser": "^8.25.0",
+		"eslint": "^9.21.0",
+		"typescript": "^5.7.3"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "workspace-notepad.download",
+				"category": "Workspace Notepad",
+				"title": "Download Notepad",
+				"icon": "$(desktop-download)"
+			},
+			{
+				"command": "workspace-notepad.open-main-editor",
+				"category": "Workspace Notepad",
+				"title": "Open in Main Editor",
+				"icon": "$(window)"
+			},
+			{
+				"command": "workspace-notepad.move-to-side-view",
+				"category": "Workspace Notepad",
+				"title": "Move to Side Panel",
+				"icon": "$(layout-sidebar-left)"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "workspace-notepad-container",
+					"title": "Workspace Notepad",
+					"icon": "media/icons/light.svg"
+				}
+			]
+		},
+		"views": {
+			"workspace-notepad-container": [
+				{
+					"id": "workspace-notepad-side-view",
+					"type": "webview",
+					"name": "Workspace Notepad",
+					"icon": "media/icons/light.svg"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "workspace-notepad.download",
+					"group": "navigation@1",
+					"when": "view == workspace-notepad-side-view"
+					
+				},
+				{
+					"command": "workspace-notepad.open-main-editor",
+					"group": "navigation@2",
+					"when": "view == workspace-notepad-side-view"
+					
+				}
+			],
+			"editor/title": [
+				{
+					"command": "workspace-notepad.download",
+					"group": "navigation@1",
+					"when": "activeWebviewPanelId == workspace-notepad-main-editor"
+				},
+				{
+					"command": "workspace-notepad.move-to-side-view",
+					"group": "navigation@2",
+					"when": "activeWebviewPanelId == workspace-notepad-main-editor"
+				}
+			],
+			"webview/context": [
+				{
+					"command": "workspace-notepad.open-main-editor",
+					"group": "z_commands@1",
+					"when": "webviewId == workspace-notepad-side-view"
+				},
+				{
+					"command": "workspace-notepad.move-to-side-view",
+					"group": "z_commands@1",
+					"when": "webviewId == workspace-notepad-main-editor"
+				},
+				{
+					"command": "workspace-notepad.download",
+					"group": "z_commands@2",
+					"when": "webviewId == workspace-notepad-side-view || webviewId == workspace-notepad-main-editor"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "workspace-notepad.move-to-side-view",
+					"when": "false"
+				}
+			]
+		}
+	}
+}
