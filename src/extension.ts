@@ -86,7 +86,15 @@ class WebviewProvider implements vscode.WebviewViewProvider {
 					<dialog id="disabled-dialog">
 						<button id="activate">Use Here</button>
 					</dialog>
-					<div id="notepad">Loading...</div>
+					<div
+						id="notepad"
+						role="textbox"
+						tabindex="0"
+						aria-multiline="true"
+						aria-disabled="true"
+					>
+						Loading...
+					</div>
 					<script type="module" src="${scriptURI}"></script>
 				</body>
 			</html>
