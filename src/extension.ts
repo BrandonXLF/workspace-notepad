@@ -221,7 +221,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 
 	ctx.subscriptions.push(
 		vscode.commands.registerCommand('workspace-notepad.download', () => storage.download()),
-		vscode.commands.registerCommand('workspace-notepad.open-main-editor', async () => {
+		vscode.commands.registerCommand('workspace-notepad.open-main-editor', () => {
 			if (!webViewProvider.showIfExists(WebviewType.MainEditor)) {
 				webViewProvider.resolveMainEditorWebview(
 					createMainEditorWebviewPanel(ctx)
